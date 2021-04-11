@@ -1,0 +1,7 @@
+{
+    "build": {
+        "flags": [
+            "-DCORE_DEBUG_LEVEL=5"
+        ]
+    }
+}
