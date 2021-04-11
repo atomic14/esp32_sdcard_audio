@@ -24,7 +24,7 @@
 #define I2S_SPEAKER_LEFT_RIGHT_CLOCK GPIO_NUM_27
 #define I2S_SPEAKER_SERIAL_DATA GPIO_NUM_18
 
-// transmit button
+// record button
 #define GPIO_BUTTON GPIO_NUM_23
 
 // sdcard
