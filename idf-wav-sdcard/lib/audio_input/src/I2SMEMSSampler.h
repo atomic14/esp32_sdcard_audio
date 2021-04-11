@@ -1,5 +1,4 @@
-#ifndef __i2s_sampler_h__
-#define __i2s_sampler_h__
+#pragma once
 
 #include "I2SSampler.h"
 
@@ -20,5 +19,3 @@ public:
         bool fixSPH0645 = false);
     virtual int read(int16_t *samples, int count);
 };
-
-#endif

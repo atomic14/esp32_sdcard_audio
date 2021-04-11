@@ -1,5 +1,4 @@
-#ifndef __sampler_base_h__
-#define __sampler_base_h__
+#pragma once
 
 #include <freertos/FreeRTOS.h>
 #include <driver/i2s.h>
@@ -27,5 +26,3 @@ public:
         return m_i2s_config.sample_rate;
     }
 };
-
-#endif
