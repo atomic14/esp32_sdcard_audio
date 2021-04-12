@@ -10,7 +10,6 @@
 #include "SDCard.h"
 #include "WAVFileWriter.h"
 #include "WAVFileReader.h"
-
 #include "config.h"
 
 static const char *TAG = "app";

@@ -1,6 +1,10 @@
 # ESP32 SDCard Wave File Example
 
-This code shows how to record a WAV file to an SD Card attached to an ESP32.
+This code shows how to record a WAV file to an SD Card attached to an ESP32 and then play it back.
+
+There's an explanatory video [here](https://youtu.be/bVru6M862HY)
+
+[![Demo Video](https://img.youtube.com/vi/bVru6M862HY/0.jpg)](https://www.youtube.com/watch?v=bVru6M862HY)
 
 There are two projects - one using Arduino and one using the Esspresif IDF. Both of these projects use PlatformIO to build.
 

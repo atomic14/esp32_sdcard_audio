@@ -20,6 +20,15 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
 {
   m_mount_point = mount_point;
   esp_err_t ret;
+  // Options for mounting the filesystem.
+  // If format_if_mount_failed is set to true, SD card will be partitioned and
+  // formatted in case when mounting fails.
+  esp_vfs_fat_sdmmc_mount_config_t mount_config = {
+      .format_if_mount_failed = true,
+      .max_files = 5,
+      .allocation_unit_size = 16 * 1024};
+
+  ESP_LOGI(TAG, "Initializing SD card");
 
   sdmmc_host_t host = SDSPI_HOST_DEFAULT();
   sdspi_slot_config_t slot_config = SDSPI_SLOT_CONFIG_DEFAULT();
@@ -28,16 +37,6 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
   slot_config.gpio_sck = clk;
   slot_config.gpio_cs = cs;
 
-  // Options for mounting the filesystem.
-  // If format_if_mount_failed is set to true, SD card will be partitioned and
-  // formatted in case when mounting fails.
-  esp_vfs_fat_sdmmc_mount_config_t mount_config = {
-      .format_if_mount_failed = false,
-      .max_files = 5,
-      .allocation_unit_size = 16 * 1024};
-
-  ESP_LOGI(TAG, "Initializing SD card");
-
   ret = esp_vfs_fat_sdmmc_mount(m_mount_point.c_str(), &host, &slot_config, &mount_config, &m_card);
 
   if (ret != ESP_OK)
@@ -45,7 +44,7 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
     if (ret == ESP_FAIL)
     {
       ESP_LOGE(TAG, "Failed to mount filesystem. "
-                    "If you want the card to be formatted, set the EXAMPLE_FORMAT_IF_MOUNT_FAILED menuconfig option.");
+                    "If you want the card to be formatted, set the format_if_mount_failed");
     }
     else
     {
@@ -55,9 +54,9 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
     }
     return;
   }
-
   ESP_LOGI(TAG, "SDCard mounted at: %s", m_mount_point.c_str());
-  // Card has been initialized, print its properties - NOTE - this does nothing on Arduino :(
+
+  // Card has been initialized, print its properties
   sdmmc_card_print_info(stdout, m_card);
 }
 

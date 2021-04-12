@@ -5,8 +5,8 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "esp_vfs_fat.h"
-#include "driver/sdspi_host.h"
 #include "driver/spi_common.h"
+#include "driver/sdspi_host.h"
 #include "sdmmc_cmd.h"
 
 #include "SDCard.h"
@@ -68,6 +68,7 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
     }
     return;
   }
+  ESP_LOGI(TAG, "SDCard mounted at: %s", m_mount_point.c_str());
 
   // Card has been initialized, print its properties
   sdmmc_card_print_info(stdout, m_card);
