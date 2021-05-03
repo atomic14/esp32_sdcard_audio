@@ -8,6 +8,7 @@
 #include "ADCSampler.h"
 #include "I2SOutput.h"
 #include "SDCard.h"
+#include "SPIFFS.h"
 #include "WAVFileWriter.h"
 #include "WAVFileReader.h"
 #include "config.h"
@@ -40,8 +41,10 @@ void record(I2SSampler *input, const char *fname)
   while (gpio_get_level(GPIO_BUTTON) == 1)
   {
     int samples_read = input->read(samples, 1024);
+    int64_t start = esp_timer_get_time();
     writer->write(samples, samples_read);
-    ESP_LOGI(TAG, "Wrote %d samples", samples_read);
+    int64_t end = esp_timer_get_time();
+    ESP_LOGI(TAG, "Wrote %d samples in %lld microseconds", samples_read, end - start);
   }
   // stop the input
   input->stop();
@@ -87,8 +90,13 @@ void app_main(void)
 {
   ESP_LOGI(TAG, "Starting up");
 
+#ifdef USE_SPIFFS
+  ESP_LOGI(TAG, "Mounting SPIFFS on /sdcard");
+  new SPIFFS("/sdcard");
+#else
   ESP_LOGI(TAG, "Mounting SDCard on /sdcard");
   new SDCard("/sdcard", PIN_NUM_MISO, PIN_NUM_MOSI, PIN_NUM_CLK, PIN_NUM_CS);
+#endif
 
   ESP_LOGI(TAG, "Creating microphone");
 #ifdef USE_I2S_MIC_INPUT

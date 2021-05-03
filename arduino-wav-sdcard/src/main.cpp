@@ -30,8 +30,10 @@ void record(I2SSampler *input, const char *fname)
   while (gpio_get_level(GPIO_BUTTON) == 1)
   {
     int samples_read = input->read(samples, 1024);
+    int64_t start = esp_timer_get_time();
     writer->write(samples, samples_read);
-    ESP_LOGI(TAG, "Wrote %d samples", samples_read);
+    int64_t end = esp_timer_get_time();
+    ESP_LOGI(TAG, "Wrote %d samples in %lld microseconds", samples_read, end - start);
   }
   // stop the input
   input->stop();
