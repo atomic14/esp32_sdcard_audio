@@ -4,7 +4,7 @@
 #include <I2SMEMSSampler.h>
 #include <I2SOutput.h>
 #include <SDCard.h>
-#include <SPIFFS.h>
+#include <IDFSPIFFS.h>
 #include <WAVFileReader.h>
 #include <WAVFileWriter.h>
 #include "config.h"
@@ -81,9 +81,9 @@ void main_task(void *param)
 
 #ifdef USE_SPIFFS
   ESP_LOGI(TAG, "Mounting SPIFFS on /sdcard");
-  SPIFFS.begin(true, "/sdcard");
+  new IDFSPIFFS("/sdcard");
 #else
-  ESP_LOGI(TAG, "Mounting SDCard on /sdcard");  
+  ESP_LOGI(TAG, "Mounting SDCard on /sdcard");
   new SDCard("/sdcard", PIN_NUM_MISO, PIN_NUM_MOSI, PIN_NUM_CLK, PIN_NUM_CS);
 #endif
 
