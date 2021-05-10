@@ -102,7 +102,7 @@ void app_main(void)
 #ifdef USE_I2S_MIC_INPUT
   I2SSampler *input = new I2SMEMSSampler(I2S_NUM_0, i2s_mic_pins, i2s_mic_Config);
 #else
-  I2SSampler *m_input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7);
+  I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
 #endif
   I2SOutput *output = new I2SOutput(I2S_NUM_0, i2s_speaker_pins);
 
