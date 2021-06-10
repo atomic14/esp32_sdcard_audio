@@ -4,6 +4,7 @@
 #include <I2SMEMSSampler.h>
 #include <ADCSampler.h>
 #include <I2SOutput.h>
+#include <DACOutput.h>
 #include <SDCard.h>
 #include "SPIFFS.h"
 #include <WAVFileReader.h>
@@ -94,7 +95,12 @@ void main_task(void *param)
 #else
   I2SSampler *input = new ADCSampler(ADC_UNIT_1, ADC1_CHANNEL_7, i2s_adc_config);
 #endif
-  I2SOutput *output = new I2SOutput(I2S_NUM_0, i2s_speaker_pins);
+
+#ifdef USE_I2S_SPEAKER_OUTPUT
+  Output *output = new I2SOutput(I2S_NUM_0, i2s_speaker_pins);
+#else
+  Output *output = new DACOutput(I2S_NUM_0);
+#endif
 
   gpio_set_direction(GPIO_BUTTON, GPIO_MODE_INPUT);
   gpio_set_pull_mode(GPIO_BUTTON, GPIO_PULLDOWN_ONLY);
