@@ -29,7 +29,7 @@ Wiring up should be reasonably straightforward. The pins on an SD Card are as fo
 
 ![SD Card Pins](images/sd-card-wiring.jpg)
 
-Make sure you update the `config.h` file with the gpio pins you have used for your SD Card. Double check that you have **NOT** re-used ones of the pins that has been setup for the speaker or microphone.
+Make sure you update the `config.h` file with the GPIO pins you have used for your SD Card. Double-check that you have **NOT** re-used one of the pins that has been setup for the speaker or microphone.
 
 # Usage
 
