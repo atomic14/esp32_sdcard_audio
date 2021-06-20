@@ -19,9 +19,15 @@ Edit `config.h` for your device. In particular, you will probably want to change
 
 A few people have reported that they have only been able to get this to work by adding pull up resistors.
 
-This is recommended by Espressif under some circumstances (https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/sd_pullup_requirements.html)
+This is [recommended by Espressif](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/sd_pullup_requirements.html) under some circumstances
 
 So if you are having issues with your SD Card not initialising then I'd suggest trying to add 10K pull resistors to the lines to see if that fixes your issues.
+
+# Wiring
+
+Wiring up should be reasonably straightforward. The pins on an SD Card are as follows:
+
+![SD Card Pins](images/sd-card-wiring.jpg)
 
 # Usage
 
