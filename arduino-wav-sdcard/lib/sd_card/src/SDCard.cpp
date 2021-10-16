@@ -31,6 +31,8 @@ SDCard::SDCard(const char *mount_point, gpio_num_t miso, gpio_num_t mosi, gpio_n
   ESP_LOGI(TAG, "Initializing SD card");
 
   sdmmc_host_t host = SDSPI_HOST_DEFAULT();
+  host.max_freq_khz = 4000; //4MHz works with most boards. Default doesn't work with all boards, increasing speed might improve performance but might break functionality depending on breakout board. 
+  
   sdspi_slot_config_t slot_config = SDSPI_SLOT_CONFIG_DEFAULT();
   slot_config.gpio_miso = miso;
   slot_config.gpio_mosi = mosi;
