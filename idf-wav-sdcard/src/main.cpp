@@ -12,6 +12,7 @@
 #include "WAVFileWriter.h"
 #include "WAVFileReader.h"
 #include "config.h"
+#include "esp_timer.h"
 
 static const char *TAG = "app";
 
