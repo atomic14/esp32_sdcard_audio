@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <stdio.h>
-#include <FreeRTOS/FreeRTOS.h>
+#include <freertos/FreeRTOS.h>
 #include <I2SMEMSSampler.h>
 #include <ADCSampler.h>
 #include <I2SOutput.h>
