@@ -1,3 +1,6 @@
+[![Arduino Build](https://github.com/atomic14/esp32_sdcard_audio/actions/workflows/arduino.yaml/badge.svg)](https://github.com/atomic14/esp32_sdcard_audio/actions/workflows/arduino.yaml)
+[![IDF Build](https://github.com/atomic14/esp32_sdcard_audio/actions/workflows/idf.yaml/badge.svg)](https://github.com/atomic14/esp32_sdcard_audio/actions/workflows/idf.yaml)
+
 # ESP32 SDCard Wave File Example
 
 This code shows how to record a WAV file to an SD Card attached to an ESP32 and then play it back.
